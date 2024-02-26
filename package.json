@@ -1,0 +1,20 @@
+{
+  "name": "nauka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:pulpit": "npm run test tests/pulpit.spec.ts",
+    "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.11.0",
+    "prettier": "3.2.5"
+  }
+}
