@@ -4,6 +4,14 @@ This Test Automation project is based on `Playwright` and `TypeScript`.
 The tested page is a simple demo of a bank.  
 It was written during a training organized by jaktestowac.pl and is still being developed.
 
+## How to run?
+To run this project, install it locally using npm:
+
+```
+$ npm install
+$ npx playwright test
+```
+
 ## Links
 - course https://jaktestowac.pl/course/playwright-wprowadzenie/
 - test site https://demo-bank.vercel.app/  
