@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
+import { PulpitPage } from '../pages/pulpit.page';
 
 test.describe('User login', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('login with correct credentials', async ({ page }) => {
+  test('successful login with correct credentials', async ({ page }) => {
     // Arrange
     const userID = loginData.userID;
     const userPassword = loginData.userPassword;
@@ -18,32 +19,33 @@ test.describe('User login', () => {
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
     // Assert
-    await expect(page.getByTestId('user-name')).toHaveText(expectedUserName);
+    const pulpitPage = new PulpitPage(page);
+    await expect(pulpitPage.userName).toHaveText(expectedUserName);
   });
 
-  test('login with incorrect credentials - username', async ({ page }) => {
+  test('unsuccessful login with incorrect credentials - username', async ({ page }) => {
     // Arrange
     const incorrectUserID = 'ghost';
     const expectedErrorMessageUserID = 'identyfikator ma min. 8 znaków';
     // Act
-    await page.getByTestId('login-input').fill(incorrectUserID);
-    await page.getByTestId('password-input').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(incorrectUserID);
+    await loginPage.passwordInput.click();
     // Assert
-    await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorMessageUserID);
+    await expect(loginPage.loginError).toHaveText(expectedErrorMessageUserID);
   });
 
-  test('login with incorrect credentials - password', async ({ page }) => {
+  test('unsuccessful login with incorrect credentials - password', async ({ page }) => {
     // Arrange
     const userID = loginData.userID;
     const incorrectUserPassword = '1234';
     const expectErrorMessageUserPassword = 'hasło ma min. 8 znaków';
     // Act
-    await page.getByTestId('login-input').fill(userID);
-    await page.getByTestId('password-input').fill(incorrectUserPassword);
-    await page.getByTestId('password-input').blur();
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(userID);
+    await loginPage.passwordInput.fill(incorrectUserPassword);
+    await loginPage.passwordInput.blur();
     // Assert
-    await expect(page.getByTestId('error-login-password')).toHaveText(
-      expectErrorMessageUserPassword,
-    );
+    await expect(loginPage.passwordError).toHaveText(expectErrorMessageUserPassword);
   });
 });
