@@ -21,9 +21,9 @@ $ npx playwright test
 - contains 7 test cases within 3 sets
 - is refactored according to the AAA (Arrange Act Assert) pattern
 - contains hooks (beforeEach) construction
+- contains POM (Page Object Model)
 
 ## It is planned:
-- use of POM (Page Object Model) - within the training
 - increasing the number of test cases - outside of the training
 
 Any suggestions that could improve my PW learning are welcome.
