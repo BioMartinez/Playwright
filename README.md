@@ -2,7 +2,7 @@
 
 - This Test Automation project is based on `Playwright` and `TypeScript`.  
 - The tested page is a simple demo of a bank.  
-- It was written during a training organized by jaktestowac.pl and is still being developed.
+- It was written during a training organized by [jaktestowac.pl](https://jaktestowac.pl/playwright/) and is still being developed.
     
 The path of the Playwright's course and where I am currently are following:  
     :white_check_mark: Javascript for tester (8h)  
